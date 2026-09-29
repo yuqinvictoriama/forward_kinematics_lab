@@ -160,7 +160,7 @@ class ForwardKinematics(Node):
 
         # T_1_2 (leg_front_l_1 to leg_front_l_2)
         ## TODO: Implement the transformation matrix from leg_front_l_1 to leg_front_l_2
-        T_1_2 = translation(0, 0, -0.39) @ rotation_y(-1.57080) @ rotation_z(-theta2)
+        T_1_2 = translation(0, 0, -0.039) @ rotation_y(-1.57080) @ rotation_z(-theta2)
 
         # T_2_3 (leg_front_l_2 to leg_front_l_3)
         ## TODO: Implement the transformation matrix from leg_front_l_2 to leg_front_l_3
