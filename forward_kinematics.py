@@ -97,22 +97,34 @@ class ForwardKinematics(Node):
         )
 
     def rotation_y(self, angle):
-        ## TODO: Implement the rotation matrix about the y-axis
-        # return np.array([
-        # ])
-        raise NotImplementedError()
+        return np.array(
+                [
+                    [np.cos(angle), 0, np.sin(angle), 0],
+                    [0, 1, 0, 0],
+                    [-np.sin(angle), 0, np.cos(angle), 0],
+                    [0, 0, 0, 1],
+                ]
+            )
 
     def rotation_z(self, angle):
-        ## TODO: Implement the rotation matrix about the z-axis
-        # return np.array([
-        # ])
-        raise NotImplementedError()
+        return np.array(
+                    [
+                        [np.cos(angle), -np.sin(angle), 0, 0],
+                        [np.sin(angle), np.cos(angle), 0, 0],
+                        [0, 0, 1, 0],
+                        [0, 0, 0, 1],
+                    ]
+                )
 
     def translation(self, x, y, z):
-        ## TODO: Implement the translation matrix
-        # return np.array([
-        # ])
-        raise NotImplementedError()
+        return np.array(
+                    [
+                        [1, 0, 0, x],
+                        [0, 1, 0, y],
+                        [0, 0, 1, z],
+                        [0, 0, 0, 1],
+                    ]
+                )
 
     ######################## Per-leg forward kinematics ########################
     #
@@ -148,22 +160,22 @@ class ForwardKinematics(Node):
 
         # T_1_2 (leg_front_l_1 to leg_front_l_2)
         ## TODO: Implement the transformation matrix from leg_front_l_1 to leg_front_l_2
-        T_1_2 = None
+        T_1_2 = translation(0, 0, -0.39) @ rotation_y(-1.57080) @ rotation_z(-theta2)
 
         # T_2_3 (leg_front_l_2 to leg_front_l_3)
         ## TODO: Implement the transformation matrix from leg_front_l_2 to leg_front_l_3
-        T_2_3 = None
+        T_2_3 = translation(0, -0.0494, 0.0685) @ rotation_y(-1.57080) @ rotation_z(-theta3)
 
         # T_3_ee (leg_front_l_3 to end-effector)
-        T_3_ee = None
+        T_3_ee = translation(0.06231, -0.06216, -0.018)
 
         # TODO: Compute the final transformation. T_0_ee is the multiplication of the previous transformation matrices
-        T_0_ee = None
+        T_0_ee = T_3_ee @ T_2_3 @ T_1_2 @ T_0_1
 
         # TODO: Extract the end-effector position. The end effector position is a 3x1 vector (not in homogenous coordinates)
-        end_effector_position = None
+        end_effector_position = T_0_ee @ (0, 0, 0, 1)
 
-        return end_effector_position
+        return end_effector_position[0:2]
 
     def fk_front_right(self, theta1, theta2, theta3):
         rotation_x, rotation_y, rotation_z, translation = (
