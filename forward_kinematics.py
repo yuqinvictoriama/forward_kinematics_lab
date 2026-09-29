@@ -98,23 +98,23 @@ class ForwardKinematics(Node):
 
     def rotation_y(self, angle):
         return np.array(
-                [
-                    [np.cos(angle), 0, np.sin(angle), 0],
-                    [0, 1, 0, 0],
-                    [-np.sin(angle), 0, np.cos(angle), 0],
-                    [0, 0, 0, 1],
-                ]
-            )
+            [
+                [np.cos(angle), 0, np.sin(angle), 0],
+                [0, 1, 0, 0],
+                [-np.sin(angle), 0, np.cos(angle), 0],
+                [0, 0, 0, 1],
+            ]
+        )
 
     def rotation_z(self, angle):
         return np.array(
-                    [
-                        [np.cos(angle), -np.sin(angle), 0, 0],
-                        [np.sin(angle), np.cos(angle), 0, 0],
-                        [0, 0, 1, 0],
-                        [0, 0, 0, 1],
-                    ]
-                )
+            [
+                [np.cos(angle), -np.sin(angle), 0, 0],
+                [np.sin(angle), np.cos(angle), 0, 0],
+                [0, 0, 1, 0],
+                [0, 0, 0, 1],
+            ]
+        )
 
     def translation(self, x, y, z):
         return np.array(
