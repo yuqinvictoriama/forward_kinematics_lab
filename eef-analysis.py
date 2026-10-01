@@ -59,12 +59,13 @@ def fk_front_right(theta1, theta2, theta3, d12):
 
 
 # Testing EEF position with different errors 
+# 0 degree on all 3 joints 
 print("0 deg, 0.039 m: ", fk_front_right(0.0, 0.0, 0.0, 0.039))
 print("0 deg, 0.037 m: ", fk_front_right(0.0, 0.0, 0.0, 0.037))
 print("0 deg, 0.035 m: ", fk_front_right(0.0, 0.0, 0.0, 0.035))
 print("0 deg, 0.031 m: ", fk_front_right(0.0, 0.0, 0.0, 0.031))
 
-
+# 45 degree on all 3 joints 
 print("45 deg, 0.039 m: ", fk_front_right(m.pi/4, m.pi/4, m.pi/4, 0.039))
 print("45 deg, 0.037 m: ", fk_front_right(m.pi/4, m.pi/4, m.pi/4, 0.037))
 print("45 deg, 0.035 m: ", fk_front_right(m.pi/4, m.pi/4, m.pi/4, 0.035))
